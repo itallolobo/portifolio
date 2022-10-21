@@ -25,12 +25,13 @@ const fontLoader = new FontLoader()
 const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 2000)
 camera.position.z = 11
 camera.position.y = -2
-const renderer = new THREE.WebGLRenderer()
+const renderer = new THREE.WebGLRenderer({ antialias: true })
+renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
 
-//const controls = new OrbitControls(camera, renderer.domElement)
+const controls = new OrbitControls(camera, renderer.domElement)
 const gui = new GUI()
 
 
@@ -64,7 +65,7 @@ function animate() {
     requestAnimationFrame(animate)
     stars.updateStars()
     //here
-    //controls.update()
+    controls.update()
     render()
     TWEEN.update()
 }
