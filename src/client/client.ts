@@ -22,7 +22,6 @@ const scene = new THREE.Scene()
 const fontLoader = new FontLoader()
 
 
-
 const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 2000)
 camera.position.z = 11
 camera.position.y = -2
@@ -52,8 +51,8 @@ var developer = new createText(camera,scene,fontLoader, 'Roboto Slab_Regular', '
 var rocket = new createRocket(scene)
 var obj = { add: () => {} };
 
-const camLock = new addCamToRocketGroup(camera,rocket.rocket)
-new rocketEntryAnimation(rocket.rocket, camera, camLock )
+
+new rocketEntryAnimation(rocket.rocket, camera)
 gui.add(obj,'add');
 
 
