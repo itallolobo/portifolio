@@ -11,7 +11,7 @@ import rocketEntryAnimation from './animations/rocketEntryAnimation'
 
 
 import resizeView from './components/resizeView'
-import addCamToRocketGroup from './components/addCamToRocketGroup'
+import addCamToRocketGroup from './components/fixCamToRocket'
 
 
 import {FontLoader} from 'three/examples/jsm/loaders/FontLoader'
@@ -20,7 +20,6 @@ import { GUI } from 'dat.gui'
 
 const scene = new THREE.Scene()
 const fontLoader = new FontLoader()
-
 
 
 
@@ -45,19 +44,24 @@ resizeView(camera, renderer)
 //start
 
 var stars = new createStars(scene)
-var text = new createText(camera,scene,fontLoader, 'Roboto Medium_Regular','Itallo Lobo', 0.5, 0.1, 'white', 0, 0, 0)
-var text1 = new createText(camera,scene,fontLoader, 'Roboto Slab_Regular', 'Developer_', 0.3, 0.1, 'white', 0, -0.6, 0)
+var itallo = new createText(camera,scene,fontLoader, 'Roboto Medium_Regular','Itallo Lobo', 2, 0.3, 'white', 0, 6.5, -34)
+var developer = new createText(camera,scene,fontLoader, 'Roboto Slab_Regular', 'Developer_', 1.2, 0.3, 'white', 0, 4, -34 )
+
+
+
 var rocket = new createRocket(scene)
 var obj = { add: () => {} };
 
 const camLock = new addCamToRocketGroup(camera,rocket.rocket)
-new rocketEntryAnimation(rocket.rocket, camera, camLock)
+new rocketEntryAnimation(rocket.rocket, camera, camLock )
 gui.add(obj,'add');
 
 
 
 
+
 function animate() {
+
     requestAnimationFrame(animate)
     stars.updateStars()
     //here
@@ -70,3 +74,4 @@ function render() {
     renderer.render(scene, camera)
 }
 animate()
+

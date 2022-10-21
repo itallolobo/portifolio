@@ -1,6 +1,6 @@
 
 import * as THREE from 'three'
-class addCamToRocketGroup {
+class fixCamToRocket {
     camera: THREE.PerspectiveCamera
     rocket: THREE.Mesh
     constructor(camera: THREE.PerspectiveCamera, rocket: THREE.Mesh) {
@@ -17,4 +17,4 @@ class addCamToRocketGroup {
 
 }
 
-export default addCamToRocketGroup
+export default fixCamToRocket
