@@ -20,7 +20,7 @@ class createStars {
             'position',
             new THREE.BufferAttribute(new Float32Array(this.vertices.positions), 3)
         )
-        console.log(this.starBox.getAttribute('position'))
+        //console.log(this.starBox.getAttribute('position'))
         let starImage = new THREE.TextureLoader().load('star.png')
         let starMaterial = new THREE.PointsMaterial({
             color: 0xaaaaaa,

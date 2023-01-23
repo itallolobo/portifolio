@@ -17,13 +17,17 @@ module.exports = {
                   },
                 ],
               },
+              {
+                test: /\.css$/,
+                use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
+            }
         ],
     },
     resolve: {
         alias: {
             three: path.resolve('./node_modules/three')
         },
-        extensions: ['.tsx', '.ts', '.js', ".json"],
+        extensions: ['.css','.tsx', '.ts', '.js', ".json"],
     },
     output: {
         filename: 'bundle.js',
