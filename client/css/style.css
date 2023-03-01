@@ -1,0 +1,148 @@
+html{
+    max-width: 100%;
+}
+body {
+    overflow: hidden;
+    margin: 0px;
+    font-family: monospace;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+}
+
+main {
+    width: 100vw;
+    height: 100vw;
+    z-index: 99;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+    font-size: 5vh;
+}
+#hud-container{
+    position: fixed;
+    color: white;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+#lang-container{
+
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    z-index: 100;
+}
+#sound-container{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 13px;
+    left: 13px;
+    z-index: 100;
+}
+
+#sound-icon{
+    width: 80%;
+    height: 80%;
+    cursor: pointer;
+}
+
+#move-btn-container{
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    left: 50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    
+}
+
+
+.move-btn{
+    margin: 0px 10px;
+    border: 2px solid white;
+    border-radius: 15px;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#down-btn{
+    transform: rotate(180deg);
+}
+.arrow-icon{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+
+
+}
+
+.fade-in{
+    animation: fade-in 0.7s;
+  }
+  
+.fade-out{
+    animation: fade-out 0.7s;
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+    @keyframes fade-out {
+        0% {
+        opacity: 1;
+        }
+        100% {
+        opacity: 0;
+        }
+    }
+
+
+.texts{
+ position: absolute;
+z-index: 100;
+}
+#title-text{
+    position: absolute;
+    transform: translate(-50%, 0);
+    font-size: 3vh;
+    text-align: center;
+    width: 35%;
+    z-index: 100;
+    font-weight: 300;
+    line-height: 1.5;
+}
+#paragraph-text{
+    position: absolute;
+    transform: translate(0, -50%);
+    font-size: 2.5vh;
+    text-align: left;
+    width: 35%;
+    z-index: 100;
+    font-weight: 300;
+    line-height: 1.5;
+}
