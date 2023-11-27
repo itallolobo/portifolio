@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-z
+        z
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="/css/style.css" />
         <link rel="stylesheet" href="/css/lang-button.css " />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+            integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
         <title>Itallo Lobo</title>
         <script
             src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -14,11 +21,7 @@ z
         ></script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,400&display=swap"
-            rel="stylesheet"
-        />
-
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     </head>
 
     <body>
@@ -40,29 +43,21 @@ z
                     </div>
                 </div>
             </div>
+            <div id="move-btn-container">
+                <div id="up-btn" class="move-btn">
+                    <img class="arrow-icon" src="/images/arrow.svg" value="" />
+                </div>
+                <div id="down-btn" class="move-btn">
+                    <img class="arrow-icon" src="/images/arrow.svg" value="" />
+                </div>
+            </div>
+            <div id="title-text" class="texts"></div>
+            <div id="paragraph-text"class="texts"></div>
+            <div id="description-text"class="texts"></div>
         </div>
-        <main id="main">
-            <section id="section-title">
-                .
-            </section>
-            <section id="section-bio">
-                .
-            </section>
-            <section id="section-printer">
-                .
-            </section>
-            <section id="section-encheu">
-                .
-            </section>
-            <section id="section-courses">
-                .
-            </section>
-
-        </main>
         <script>
-            window.scrollTo(0,0);
-
-            </script>
+            window.scrollTo(0, 0)
+        </script>
         <script type="module" src="bundle.js"></script>
     </body>
 </html>

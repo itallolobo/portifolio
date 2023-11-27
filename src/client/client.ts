@@ -2,19 +2,32 @@ import 'normalize.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import hud from './components/hud'
+import movementHandler from './handlers/movementHandler'
+import randomRange from './components/randomRange'
+import floatingAnimation from './animations/floatingAnimation'
+
 //objects
-import createStars from './components/createStars'
-import createText from './components/createText'
-import createRocket from './components/createRocket'
-import createCubeSat from './components/createCubeSat'
-import createPrinter from './components/createPrinter'
+import createStars from './objects/createStars'
+import createText from './misc/createText'
+import createRocket from './objects/createRocket'
+import createClipboard from './objects/createClipboard'
+import createLinkedin from './objects/createLinkedin'
+
+import createCloneVoz from './objects/projects/createCloneVoz'
+import createEncheu from './objects/projects/createEncheu'
+import createPrinter from './objects/projects/createPrinter'
+import createLokiGPT from './objects/projects/createLokiGPT'
+
+import createGradLogos from './objects/createGradLogos'
 //Animations
 import rocketEntryAnimation from './animations/rocketEntryAnimation'
-import scrollAnimation from './components/scrollAnimation'
 
+//import namespace 
+import global from './components/globalnamespace'
 
 import resizeView from './components/resizeView'
 import fixCamPosToHolder from './components/fixCamPosToHolder'
+
 
 
 import {FontLoader} from 'three/examples/jsm/loaders/FontLoader'
@@ -22,9 +35,14 @@ import * as TWEEN from '@tweenjs/tween.js'
 import { GUI } from 'dat.gui'
 
 
+(<any>window).global = global
+
+window.global["isAnimationRunning"] = false
+
 
 //initialize hud
 hud()
+
 window.scrollTo(0, 0)
 
 //initialize scene
@@ -56,6 +74,7 @@ resizeView(camera, renderer)
 
 
 //section1
+
 var stars = new createStars(scene)
 var itallo = new createText(camera,scene,fontLoader, 'Roboto Medium_Regular','Itallo Lobo', 2, 0.3, 'white', 0, 6.5, -34)
 var developer = new createText(camera,scene,fontLoader, 'Roboto Slab_Regular', 'Developer', 1.2, 0.3, 'white', -0.5, 4, -34 )
@@ -63,33 +82,46 @@ var slab = new createText(camera,scene,fontLoader, 'Roboto Slab_Regular', '_', 1
 
 var rocket = new createRocket(scene)
 new rocketEntryAnimation(rocket.rocket, camera)
+//floatingAnimation(rocket.rocket)
+
 
 //section2
-var cubeSat = createCubeSat(scene,camera,fontLoader)
+//var cubeSat = createCubeSat(scene,camera,fontLoader)
+var clipboard = new createClipboard(scene,camera,fontLoader)
+var linkedin = new createLinkedin(scene,camera,fontLoader)
 
+floatingAnimation(clipboard.clipboard)
+floatingAnimation(linkedin.linkedin)
+console.log(clipboard)
 
 //section3
-var printer = createPrinter(scene,camera,fontLoader)
+
+var gradLogos = new createGradLogos(scene,camera,fontLoader)
+floatingAnimation(gradLogos.unifei)
+floatingAnimation(gradLogos.drumonsters)
+
+//section4
+var cloneVoz = new createCloneVoz(scene,camera,fontLoader)
+var encheu = new createEncheu(scene,camera,fontLoader)
+var printer = new createPrinter(scene,camera,fontLoader)
+var lokiGPT = new createLokiGPT(scene,camera,fontLoader)
+
+window.global["projectObjets"] = [cloneVoz,encheu,printer,lokiGPT]
 
 
-//scroll init
-//const scroll = new scrollAnimation(scene, camera,cameraHolder)
-
-
-
-
+var movHandler = new movementHandler(scene,camera,cameraHolder)
 
 
 function animate() {
    
     requestAnimationFrame(animate)
-    //scroll.animate()
     stars.updateStars()
     fixCamPosToHolder(camera,cameraHolder)
     //here
     //controls.update()
     render()
     TWEEN.update()
+    
 }
 
 function render() {

@@ -58,7 +58,7 @@ class createText {
         return this.text
     }
     blink(duration:number){
-        console.log('blink')
+        
         new TWEEN.Tween( this.text.material ).to( { opacity: 0 }, duration ).start().repeat( Infinity ).yoyo( true ).delay(500)
     }
 }

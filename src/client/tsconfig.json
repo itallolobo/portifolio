@@ -1,9 +1,14 @@
 {
     "compilerOptions": {
+        "baseUrl": "./",
         "target": "ES6",
         "moduleResolution": "node",
         "strict": true,
         "strictPropertyInitialization": false,
+        "suppressImplicitAnyIndexErrors": true,
+        "paths": {
+            "jquery-ui":["node_modules/@types/jqueryui/index"]
+        }
     },
     "include": ["**/*.ts"]
 }

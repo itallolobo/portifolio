@@ -1,5 +1,7 @@
 import * as THREE from 'three'
 import * as TWEEN from '@tweenjs/tween.js'
+import floatingAnimation from './floatingAnimation'
+
 import getRotationPointed from '../components/getRotationPointed'
 class rocketEntryAnimation {
     public rocket: THREE.Mesh
@@ -16,6 +18,7 @@ class rocketEntryAnimation {
             .onStart(() => {
             })
             .onComplete(() => {
+                floatingAnimation(rocket)
 
             })
     }
