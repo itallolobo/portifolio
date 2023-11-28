@@ -3,10 +3,10 @@ import createText from '../../misc/createText'
 import {FontLoader} from 'three/examples/jsm/loaders/FontLoader'
 import * as TWEEN from '@tweenjs/tween.js'
 import floatingAnimation from '../../animations/floatingAnimation'
-
-
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import floatingAnimationObj from '../../animations/floatingAnimation'
 class createLokiGPT {
-    public lokiGPT: THREE.Mesh
+    public lokiGPT: THREE.Group
     private scene: THREE.Scene
     private camera: THREE.PerspectiveCamera
     private fontLoader: FontLoader
@@ -21,14 +21,30 @@ class createLokiGPT {
     }
 
     private create() {
-        const geometry = new THREE.BoxGeometry(0.9, 1.6, 0.3)
-        const material = new THREE.MeshBasicMaterial({ color: 'green' })
-        this.lokiGPT = new THREE.Mesh(geometry, material)
-        this.scene.add(this.lokiGPT)
-        this.lokiGPT.name = 'lokiGPT'
-        this.lokiGPT.position.set(21, -44.5, 15)
-        this.lokiGPT.rotation.set(0, 0, 0)
-        floatingAnimation(this.lokiGPT)
+        const loader = new GLTFLoader();
+
+        loader.load( 'models/smartphone.gltf',  ( gltf ) => {
+            this.lokiGPT = gltf.scene
+            this.scene.add( gltf.scene );
+            console.log(gltf.scene)
+            this.lokiGPT.position.set(21, -44.5, 15)
+            this.lokiGPT.rotation.set(0.4, 0.4, 0)
+
+            floatingAnimationObj(this.lokiGPT)
+
+        
+        }, undefined, function ( error ) {
+        
+            console.error( error );
+        
+        } );
+        //const geometry = new THREE.BoxGeometry(0.9, 1.6, 0.3)
+        //const material = new THREE.MeshBasicMaterial({ color: 'blue' })
+        //this.encheu = new THREE.Mesh(geometry, material)
+        //this.scene.add(this.encheu)
+        //this.encheu.name = 'encheu'
+        //this.encheu.rotation.set(0, 0, 0)
+       // 
 
 
     }

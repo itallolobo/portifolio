@@ -3,9 +3,10 @@ import createText from '../../misc/createText'
 import {FontLoader} from 'three/examples/jsm/loaders/FontLoader'
 import * as TWEEN from '@tweenjs/tween.js'
 import floatingAnimation from '../../animations/floatingAnimation'
-
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import floatingAnimationObj from '../../animations/floatingAnimation'
 class Encheu {
-    public encheu: THREE.Mesh
+    public encheu: THREE.Group
     private scene: THREE.Scene
     private camera: THREE.PerspectiveCamera
     private fontLoader: FontLoader
@@ -20,14 +21,28 @@ class Encheu {
     }
 
     private create() {
-        const geometry = new THREE.BoxGeometry(0.9, 1.6, 0.3)
-        const material = new THREE.MeshBasicMaterial({ color: 'blue' })
-        this.encheu = new THREE.Mesh(geometry, material)
-        this.scene.add(this.encheu)
-        this.encheu.name = 'encheu'
-        this.encheu.position.set(22, -38.5, 15)
-        this.encheu.rotation.set(0, 0, 0)
-        floatingAnimation(this.encheu)
+        const loader = new GLTFLoader();
+
+        loader.load( 'models/smartphone.gltf',  ( gltf ) => {
+            this.encheu = gltf.scene
+            this.scene.add( gltf.scene );
+            console.log(gltf.scene)
+            this.encheu.position.set(22, -38.5, 15)
+            floatingAnimationObj(this.encheu)
+
+        
+        }, undefined, function ( error ) {
+        
+            console.error( error );
+        
+        } );
+        //const geometry = new THREE.BoxGeometry(0.9, 1.6, 0.3)
+        //const material = new THREE.MeshBasicMaterial({ color: 'blue' })
+        //this.encheu = new THREE.Mesh(geometry, material)
+        //this.scene.add(this.encheu)
+        //this.encheu.name = 'encheu'
+        //this.encheu.rotation.set(0, 0, 0)
+       // 
 
 
     }
