@@ -1,17 +1,18 @@
 import * as THREE from 'three'
-import createText from '../../misc/createText'
-import {FontLoader} from 'three/examples/jsm/loaders/FontLoader'
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as TWEEN from '@tweenjs/tween.js'
-import floatingAnimation from '../../animations/floatingAnimation'
+import floatingAnimationObj from '../../animations/floatingAnimation'
 
 class createCloneVoz {
-    public cloneVoz: THREE.Mesh
+    public cloneVoz: THREE.Group
     private scene: THREE.Scene
     private camera: THREE.PerspectiveCamera
     private fontLoader: FontLoader
     public animationGroup: TWEEN.Group
+    public pointLight: THREE.PointLight
 
-    constructor(scene: THREE.Scene, camera: THREE.PerspectiveCamera, fontLoader:FontLoader) {
+    constructor(scene: THREE.Scene, camera: THREE.PerspectiveCamera, fontLoader: FontLoader) {
         this.scene = scene
         this.camera = camera
         this.fontLoader = fontLoader
@@ -20,19 +21,35 @@ class createCloneVoz {
     }
 
     private create() {
-        const geometry = new THREE.BoxGeometry(1.6, 1.3, 0.3)
-        const material = new THREE.MeshBasicMaterial({ color: 'gray' })
-        this.cloneVoz = new THREE.Mesh(geometry, material)
-        this.scene.add(this.cloneVoz)
-        this.cloneVoz.name = 'liraAi'
-        this.cloneVoz.position.set(19, -34.8, 14)
-        this.cloneVoz.rotation.set(0, 0, 0)
-        floatingAnimation(this.cloneVoz)
+        const loader = new GLTFLoader();
 
+        loader.load('models/casette/casette.gltf', (gltf) => {
+            this.cloneVoz = gltf.scene
+            this.scene.add(gltf.scene);
 
+            // Set material emissive
+            this.cloneVoz.traverse((child) => {
+                if (child instanceof THREE.Mesh) {
+                    //set to transparent
+                    //const emissiveColor = new THREE.Color(0xffffff);
+                    //child.material.emissive = emissiveColor;
+                   // child.material.emissiveIntensity = 0.5; // Adjust the intensity as needed
+                }
+            });
+
+            console.log(gltf.scene)
+            this.cloneVoz.scale.set(2, 2, 2)
+            this.cloneVoz.rotation.set(-0, 0.3,0)
+            //this.cloneVoz.position.set(0, -0.0, 0)
+            this.cloneVoz.position.set(19, -35.1, 14)
+            floatingAnimationObj(this.cloneVoz);
+        }, undefined, function (error) {
+            console.error(error);
+        });
+        this.pointLight = new THREE.PointLight(0xffffff, 0.5, 100);
+        this.pointLight.position.set(19, -34, 15); // Adjust the position as needed
+        this.scene.add(this.pointLight);
     }
 }
 
-export default createCloneVoz
-
-
+export default createCloneVoz;

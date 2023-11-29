@@ -17,7 +17,7 @@ class movementHandler {
         this.scene = scene
         this.camera = camera
         this.cameraHolder = cameraHolder
-        this.animationIndex = 1
+        this.animationIndex = 2
         this.books = new books(this.scene, this.camera, this.cameraHolder)
         const upBtn = document.getElementById('up-btn')
         const downBtn = document.getElementById('down-btn')

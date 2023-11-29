@@ -9,7 +9,7 @@ const isMobile = window.innerWidth < 600
                                                                  //uni                //projetos            //clone               //encheu                  //printer              //loki
 const animationsPointsComp:any = [{ x: 0, y: -2, z: 11 },{ x: 3, y: -20, z: 10 },{x:20, y:-40.2, z:35},{x:20.5, y:-35, z:18},{x:20.5, y:-38.6, z:19},{x:20, y:-41.5, z:18},{x:20, y:-44.6, z:18},{x:15, y:-55.6, z:21}]
 
-const animationsPointsMob:any = [{ x: 0, y: -2, z: 11 },{ x: 3, y: -20, z: 10 },{x:20, y:-90.2, z:45}]
+const animationsPointsMob:any = [{ x: 0, y: -2, z: 11 },{ x: 3, y: -20, z: 10 },{x:20, y:-40.2, z:35},{x:20.5, y:-35, z:18},{x:20.5, y:-38.6, z:19},{x:20, y:-41.5, z:18},{x:20, y:-44.6, z:18},{x:15, y:-55.6, z:21}]
 const animationsPoints:any = isMobile ? animationsPointsMob : animationsPointsComp
 
 const textHandler = new TextHandler()

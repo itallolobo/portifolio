@@ -23,11 +23,13 @@ class Encheu {
     private create() {
         const loader = new GLTFLoader();
 
-        loader.load( 'models/smartphone.gltf',  ( gltf ) => {
+        loader.load( 'models/galaxy_s8/scene.gltf',  ( gltf ) => {
             this.encheu = gltf.scene
             this.scene.add( gltf.scene );
             console.log(gltf.scene)
-            this.encheu.position.set(22, -38.5, 15)
+            this.encheu.scale.set(0.16, 0.16, 0.16)
+            this.encheu.rotation.set(-0,-0.3,3.14)
+            this.encheu.position.set(21.5, -37.7, 16)
             floatingAnimationObj(this.encheu)
 
         

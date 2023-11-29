@@ -111,7 +111,8 @@ window.global["projectObjets"] = [cloneVoz,encheu,printer,lokiGPT]
 
 var movHandler = new movementHandler(scene,camera,cameraHolder)
 
-
+const light = new THREE.AmbientLight( 0x404040 ); // soft white light
+scene.add( light );
 function animate() {
    
     requestAnimationFrame(animate)
