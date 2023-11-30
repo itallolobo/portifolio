@@ -97,8 +97,6 @@ console.log(clipboard)
 //section3
 
 var gradLogos = new createGradLogos(scene,camera,fontLoader)
-floatingAnimation(gradLogos.unifei)
-floatingAnimation(gradLogos.drumonsters)
 
 //section4
 var cloneVoz = new createCloneVoz(scene,camera,fontLoader)

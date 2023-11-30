@@ -1,14 +1,18 @@
 import * as THREE from 'three'
-import {FontLoader} from 'three/examples/jsm/loaders/FontLoader'
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import * as TWEEN from '@tweenjs/tween.js'
+import floatingAnimationObj from '../animations/floatingAnimation'
+
 
 class createGradLogos {
-    public unifei: THREE.Mesh
-    public drumonsters: THREE.Mesh
+    public drumonsters: THREE.Group
+    public unifei: THREE.Group
     private scene: THREE.Scene
     private camera: THREE.PerspectiveCamera
     private fontLoader: FontLoader
     public animationGroup: TWEEN.Group
+    public pointLight: THREE.PointLight
 
     constructor(scene: THREE.Scene, camera: THREE.PerspectiveCamera, fontLoader:FontLoader) {
         this.scene = scene
@@ -19,22 +23,53 @@ class createGradLogos {
     }
 
     private create() {
+        const loader = new GLTFLoader();
 
-        const material_uni = new THREE.MeshBasicMaterial({ color: 'blue' })
-        const material_dru = new THREE.MeshBasicMaterial({ color: 'cyan' })
+        loader.load( 'models/unifei.glb',  ( gltf ) => {
+            this.unifei = gltf.scene
+            this.scene.add( gltf.scene );
+            console.log(gltf.scene)
+            this.unifei.scale.set(0.008, 0.008, 0.008)
+this.unifei.position.set(1.2, -18.5, 1)   //(0.5, -21.4, 5)
+//this.drumonsters.position.set(0.8, -20.7, 2)
+this.unifei.rotation.set(1.7, 0, 0)
+//this.drumonsters.rotation.set(90, 0, 0)
+            floatingAnimationObj(this.unifei)
 
-        this.unifei = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.2, 32), material_uni)
-        this.drumonsters = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.2, 32), material_dru)
-        this.scene.add(this.unifei)
-        this.scene.add(this.drumonsters)
-        this.unifei.name = 'unifei'
-        this.drumonsters.name = 'drumonsters'
-        this.unifei.position.set(1.2, -19, 2)
-        this.drumonsters.position.set(0.8, -20.7, 2)
-        this.unifei.rotation.set(90, 0, 0)
-        this.drumonsters.rotation.set(90, 0, 0)
-        //const text: string = "Itallo Lobo é um desenvol\nvedor fullstack que, ao longo \ndos últimos anos, adquiriu \numa base solida e autodidata \nem python, javascript/type\nscript e machine learning. \n    Possui habilidade em traba\nlhar com frameworks moder\nnas como Node.js e Django, \nbibliotecas como react.js e \njquery, além da habilidade de \ncriação de modelos de ML \navançados como CNNs e LSTMs."
-        //new createText(this.camera,this.scene,this.fontLoader, 'Roboto Slab_Regular', text, 0.05, 0.01, 'black', -0.5,0.5, 0.8, 0 ,false, this.cube)
+        
+        }, undefined, function ( error ) {
+        
+            console.error( error );
+        
+        } );
+
+        const loader_2 = new GLTFLoader();
+        loader_2.load( 'models/drumonsters.glb',  ( gltf ) => {
+            this.drumonsters = gltf.scene
+            this.scene.add( gltf.scene );
+            console.log(gltf.scene)
+            this.drumonsters.scale.set(9, 9, 9)
+            this.drumonsters.position.set(0.1, -22.4, 1)
+            this.drumonsters.rotation.set(1.5, 0, 0)
+            floatingAnimationObj(this.drumonsters)
+
+        }, undefined, function ( error ) {
+            
+                console.error( error );
+            
+            } );
+        this.pointLight = new THREE.PointLight(0xffffff, 0.4, 100);
+        this.pointLight.position.set(0.5, -20.8, 6); // Adjust the position as needed
+        this.scene.add(this.pointLight);
+        //const geometry = new THREE.BoxGeometry(0.9, 1.6, 0.3)
+        //const material = new THREE.MeshBasicMaterial({ color: 'blue' })
+        //this.encheu = new THREE.Mesh(geometry, material)
+        //this.scene.add(this.encheu)
+        //this.encheu.name = 'encheu'
+        //this.encheu.rotation.set(0, 0, 0)
+       // 
+
+
     }
 }
 
@@ -42,3 +77,7 @@ export default createGradLogos
 
 
 
+//this.unifei.position.set(1.2, -19, 2)
+//this.drumonsters.position.set(0.8, -20.7, 2)
+//this.unifei.rotation.set(90, 0, 0)
+//this.drumonsters.rotation.set(90, 0, 0)
