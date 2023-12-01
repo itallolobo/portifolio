@@ -17,10 +17,10 @@
 			"mesh":0,
 			"name":"Node",
 			"rotation":[
-				0.7067995071411133,
+				0.7067996263504028,
 				0,
 				0,
-				0.7074139714241028
+				0.7074138522148132
 			]
 		}
 	],
@@ -71,9 +71,9 @@
 			"name":"mat11",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
-					0,
-					0.3100000023841858,
-					0.25,
+					0.00022863310005050153,
+					0.30157604813575745,
+					0.17114247381687164,
 					1
 				],
 				"metallicFactor":0
@@ -235,7 +235,7 @@
 		{
 			"bufferView":9,
 			"componentType":5126,
-			"count":8202,
+			"count":8210,
 			"max":[
 				0.32239580154418945,
 				0.02863645926117897,
@@ -251,7 +251,7 @@
 		{
 			"bufferView":10,
 			"componentType":5126,
-			"count":8202,
+			"count":8210,
 			"type":"VEC3"
 		},
 		{
@@ -265,9 +265,9 @@
 			"componentType":5126,
 			"count":30,
 			"max":[
-				-0.017604170367121696,
+				-0.01596660539507866,
 				0.02863645926117897,
-				-0.04346403107047081
+				-0.04327406734228134
 			],
 			"min":[
 				-0.29760420322418213,
@@ -294,13 +294,13 @@
 			"count":48,
 			"max":[
 				0.29239580035209656,
-				0.038636449724435806,
+				0.038809884339571,
 				-0.2734641134738922
 			],
 			"min":[
-				-0.30760419368743896,
-				-0.021363500505685806,
-				-0.3334640860557556
+				-0.3080960810184479,
+				-0.02197212725877762,
+				-0.33404138684272766
 			],
 			"type":"VEC3"
 		},
@@ -374,62 +374,62 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":98424,
+			"byteLength":98520,
 			"byteOffset":199660,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":98424,
-			"byteOffset":298084,
+			"byteLength":98520,
+			"byteOffset":298180,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":21288,
-			"byteOffset":396508,
+			"byteOffset":396700,
 			"target":34963
 		},
 		{
 			"buffer":0,
 			"byteLength":360,
-			"byteOffset":417796,
+			"byteOffset":417988,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":360,
-			"byteOffset":418156,
+			"byteOffset":418348,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":84,
-			"byteOffset":418516,
+			"byteOffset":418708,
 			"target":34963
 		},
 		{
 			"buffer":0,
 			"byteLength":576,
-			"byteOffset":418600,
+			"byteOffset":418792,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":576,
-			"byteOffset":419176,
+			"byteOffset":419368,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":144,
-			"byteOffset":419752,
+			"byteOffset":419944,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":419896,
+			"byteLength":420088,
 			"uri":"casette.bin"
 		}
 	]

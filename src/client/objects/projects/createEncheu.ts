@@ -23,16 +23,17 @@ class Encheu {
     private create() {
         const loader = new GLTFLoader();
 
-        loader.load( 'models/galaxy_s8/scene.gltf',  ( gltf ) => {
+        loader.load( 'models/encheu/scene.gltf',  ( gltf ) => {
             this.encheu = gltf.scene
             this.scene.add( gltf.scene );
             console.log(gltf.scene)
-            console.log("ddddddd")
             this.encheu.scale.set(0.16, 0.16, 0.16)
             this.encheu.rotation.set(-0,-0.3,3.14)
             this.encheu.position.set(21.5, -37.7, 16)
             floatingAnimationObj(this.encheu)
-
+            this.encheu.traverse((child) => {
+                child.userData = { URL: 'https://www.encheu.com.br' }
+            });
         
         }, undefined, function ( error ) {
         

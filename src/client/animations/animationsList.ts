@@ -1,18 +1,10 @@
 import * as THREE from 'three'
 import * as TWEEN from '@tweenjs/tween.js'
 import books from '../objects/createBooks'
-import TextHandler from '../handlers/textHandler'
 import * as $ from 'jquery'
 import { Console } from 'console'
 
-const isMobile = window.innerWidth < 600
-                                                                 //uni                //projetos            //clone               //encheu                  //printer              //loki
-const animationsPointsComp:any = [{ x: 0, y: -2, z: 11 },{ x: 3, y: -20, z: 10 },{x:20, y:-40.2, z:35},{x:20.5, y:-35, z:18},{x:20.5, y:-38.6, z:19},{x:20, y:-41.5, z:18},{x:20, y:-44.6, z:18},{x:15, y:-55.6, z:21}]
 
-const animationsPointsMob:any = [{ x: 0, y: -2, z: 11 },{ x: 3, y: -20, z: 10 },{x:20, y:-40.2, z:35},{x:20.5, y:-35, z:18},{x:20.5, y:-38.6, z:19},{x:20, y:-41.5, z:18},{x:20, y:-44.6, z:18},{x:15, y:-55.6, z:21}]
-const animationsPoints:any = isMobile ? animationsPointsMob : animationsPointsComp
-
-const textHandler = new TextHandler()
 
 
 
@@ -34,7 +26,8 @@ const animationList: any = [
         scene: THREE.Scene,
         camera: THREE.PerspectiveCamera,
         cameraHolder: THREE.Object3D,
-        books: books
+        textHandler: any,
+        animationsPoints: any
     ) => {
         window.global["isAnimationRunning"] = true
         const start = animationsPoints[0]
@@ -58,7 +51,8 @@ const animationList: any = [
         scene: THREE.Scene,
         camera: THREE.PerspectiveCamera,
         cameraHolder: THREE.Object3D,
-        books: books
+        textHandler: any,
+        animationsPoints: any
     ) => {
         window.global["isAnimationRunning"] = true
         const start = animationsPoints[1]
@@ -66,7 +60,7 @@ const animationList: any = [
         new TWEEN.Tween(cameraHolder.position)
             
 
-            .to(isReversed ? start : end, 300)  //1600
+            .to(isReversed ? start : end, 1600)  //1600
             .easing(TWEEN.Easing.Quadratic.InOut)
             .start()
             .onComplete(() => {
@@ -83,7 +77,8 @@ const animationList: any = [
         scene: THREE.Scene,
         camera: THREE.PerspectiveCamera,
         cameraHolder: THREE.Object3D,
-        books: books
+        textHandler: any,
+        animationsPoints: any
     ) => {
         window.global["isAnimationRunning"] = true
         const start = animationsPoints[2]
@@ -108,7 +103,8 @@ const animationList: any = [
         scene: THREE.Scene,
         camera: THREE.PerspectiveCamera,
         cameraHolder: THREE.Object3D,
-        books: books
+        textHandler: any,
+        animationsPoints: any
     ) => {
         window.global["isAnimationRunning"] = true
         const start = animationsPoints[3]
@@ -134,7 +130,8 @@ const animationList: any = [
         scene: THREE.Scene,
         camera: THREE.PerspectiveCamera,
         cameraHolder: THREE.Object3D,
-        books: books
+        textHandler: any,
+        animationsPoints: any
     ) => {
         window.global["isAnimationRunning"] = true
         const start = animationsPoints[4]
@@ -160,7 +157,8 @@ const animationList: any = [
         scene: THREE.Scene,
         camera: THREE.PerspectiveCamera,
         cameraHolder: THREE.Object3D,
-        books: books
+        textHandler: any,
+        animationsPoints: any
     ) => {
         window.global["isAnimationRunning"] = true
         const start = animationsPoints[5]
@@ -186,7 +184,8 @@ const animationList: any = [
         scene: THREE.Scene,
         camera: THREE.PerspectiveCamera,
         cameraHolder: THREE.Object3D,
-        books: books
+        textHandler: any,
+        animationsPoints: any
     ) => {
         window.global["isAnimationRunning"] = true
         const start = animationsPoints[6]
@@ -198,7 +197,7 @@ const animationList: any = [
             .start()
             .onComplete(() => {
                 console.log('animation 3')
-                textHandler.fadeIn(5, isReversed)
+                textHandler.fadeIn(6, isReversed)
                 //books.animate(isReversed)
                 window.global["isAnimationRunning"] = false
                 console.log("isReversedd", isReversed)

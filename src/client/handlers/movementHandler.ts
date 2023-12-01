@@ -4,7 +4,9 @@ import animationList from '../animations/animationsList'
 import books from '../objects/createBooks'
 import TextHandler from './textHandler'
 
-const textHandler = new TextHandler()
+const textHandler = new TextHandler()  //inicio            //grad                    porjetos              voz                   encheu                   impressora            lokigpt              contato
+const animationsPointsComp:any = [{ x: 0, y: -2, z: 11 },{ x: 3, y: -20, z: 10 },{x:20, y:-39.8, z:35},{x:20.5, y:-35, z:18},{x:20.5, y:-38.6, z:19},{x:20, y:-41.5, z:18},{x:20, y:-44.6, z:18},{x:17.5, y:-55.6, z:21}]
+const animationsPointsMob:any =  [{ x: 0, y: -2, z: 11 },{ x: 1.2, y: -20, z: 15 },{x:20, y:-40.2, z:35},{x:18.95, y:-34.3, z:19.5},{x:21.45, y:-39.2, z:19.8},{x:19, y:-40.8, z:19},{x:21, y:-45.2, z:19},{x:16.2, y:-54.6, z:21.7}]
 
 class movementHandler {
     public scene: THREE.Scene
@@ -21,20 +23,37 @@ class movementHandler {
         this.books = new books(this.scene, this.camera, this.cameraHolder)
         const upBtn = document.getElementById('up-btn')
         const downBtn = document.getElementById('down-btn')
-        //this.animationController(1)
+        this.animationController(1)
         upBtn?.addEventListener('click', () => {
             this.animationController(-1)
         })
         downBtn?.addEventListener('click', () => {
             this.animationController(1)
         })
+        window.addEventListener('wheel', (e) => {
+            if (e.deltaY > 0) {
+                this.animationController(1)
+            } else {
+                this.animationController(-1)
+            }
+        })
+        window.addEventListener('keydown', (e) => {
+            if (e.key == 'ArrowDown') {
+                this.animationController(1)
+            } else if (e.key == 'ArrowUp') {
+                this.animationController(-1)
+            }
+        })
+
     }
 
     animationController(direction: number) {
         console.log("animação "+window.global["isAnimationRunning"])
+        var animationsPoints:any = window.innerWidth < 800 ? animationsPointsMob : animationsPointsComp
+
         //1 = down -1 = up
         //console.log(this.animationList)
-        if (direction == -1 && this.animationIndex > 0 && window.global['isAnimationRunning']!='false') { // window.global['isAnimationRunning']==false) trava o movimento *correto*
+        if (direction == -1 && this.animationIndex > 0 && window.global['isAnimationRunning']==false) { // window.global['isAnimationRunning']==false) trava o movimento *correto*
             window.global["isAnimationRunning"] = true
             textHandler.fadeAllOut()
             this.animationIndex -= 1
@@ -45,9 +64,10 @@ class movementHandler {
                 this.scene,
                 this.camera,
                 this.cameraHolder,
-                this.books
+                textHandler,
+                animationsPoints
             )
-        } else if (direction == 1 && this.animationIndex < this.animationList.length && window.global['isAnimationRunning']!='false') {
+        } else if (direction == 1 && this.animationIndex < this.animationList.length && window.global['isAnimationRunning']==false) {
             window.global["isAnimationRunning"] = true
             this.animationIndex += 1
             textHandler.fadeAllOut()
@@ -57,7 +77,8 @@ class movementHandler {
                 this.scene,
                 this.camera,
                 this.cameraHolder,
-                this.books
+                textHandler,
+                animationsPoints
             )
         }
     }

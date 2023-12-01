@@ -17,6 +17,8 @@ const resizeView = (camera: THREE.PerspectiveCamera,renderer: THREE.WebGLRendere
         }
         camera.updateProjectionMatrix()
         renderer.setSize(window.innerWidth, window.innerHeight)
-        //console.log(camera.aspect)
+        console.log(camera.aspect)
+
+        
     }
 export default resizeView

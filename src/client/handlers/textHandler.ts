@@ -2,130 +2,116 @@ import * as $ from 'jquery'
 import 'jquery-ui'
 import texts from '../misc/texts'
 
-const textsParams = [
-    {
-        title: { style: { "top": "15%", "left":"50%" }, text: 'Sobre mim' },
-        description: {},
-        paragraph: { style: { "top": "50%", "right": "13%", "width": "35%" }, text: texts['about me'] },
-    },
-    {
-        title: { style: { "top": "5%", "left": "50%" }, text: 'Projetos' },
-        description: {},
-        paragraph: { style: { "top": "50%", "right": "13%", "width": "35%" }, text: "" },
-    },
-    {
-        title: { style: { "top": "15%", "left":"50%" }, text: '' },
-        description: {},
-        paragraph: { style: { "top": "50%", "right": "13%", "width": "35%" }, text: texts['about me'] },
-    },
-    {
-        title: { style: { "top": "15%", "left":"50%" }, text: '' },
-        description: {},
-        paragraph: { style: { "top": "50%", "left": "13%", "width": "35%" }, text: texts['about me'] },
-    },
-    {
-        title: { style: { "top": "15%", "left":"50%" }, text: '' },
-        description: {},
-        paragraph: { style: { "top": "50%", "right": "13%", "width": "35%" }, text: texts['about me'] },
-    },
-    {
-        title: { style: { "top": "15%", "left":"50%" }, text: '' },
-        description: {},
-        paragraph: { style: { "top": "50%", "left": "13%", "width": "35%" }, text: texts['about me'] },
-    },
-    {
-        title: { style: { "top": "15%", "left":"50%" }, text: '' },
-        description: {},
-        paragraph: { style: { "top": "50%", "Right": "13%", "width": "35%" }, text: texts['about me'] },
-    },
-]
+
 
 class TextHandler {
     public title: JQuery<HTMLElement>
-    public description: JQuery<HTMLElement>
     public paragraph: JQuery<HTMLElement>
-    public textsParams: any = textsParams
     public dropValue: number
     public isAnimationRunning: boolean
+    public textLanguage: number = 0
+    public textIndex: number = 0
     constructor() {
-        this.title = $('#title-text')
-        this.description = $('#description-text')
-        this.paragraph = $('#paragraph-text')
+        this.title = $('#title')
+        this.paragraph = $('#paragraph')
         this.dropValue = 1.5
+
+
+        //if browser language is diferent from portuguese, change language
+        console.log(navigator.language)
+        if (navigator.language != 'pt-BR') {
+            $('.checkbox').prop('checked', true)
+            this.textLanguage = 1
+
+        }
+        else {
+            $('.checkbox').prop('checked', false)
+
+            
+        }
+        //catch language change
+        $('.checkbox').on('click', () => {
+            this.changeLanguage($('.checkbox').prop('checked') ? 1 : 0)
+        })
     }
 
-    addAtributes(elem: JQuery<HTMLElement>, style: any) {
-        elem.prop('style', '')
-        elem.css(style)
-        console.log(style)
-        //elem.css('top', top-this.dropValue + '%')
-        elem.css('opacity', 0)
+    changeLanguage(language: number) {
+        //fade out
+        this.fadeAllOut()
+        //wait for fade out
+        setTimeout(() => {
+            //change language
+            this.textLanguage = language
+            this.fadeIn(this.textIndex)
+
+        }, 300)
+        //change language
+
     }
 
     fadeAnimation(elem: JQuery<HTMLElement>, isReversed: boolean = false) {
+        //get top
+
+        
         if (isReversed) {
             //add ease in
-            elem.animate({ opacity: 0, top: `+=${this.dropValue}%` }, 300, () => {})
-
+            //set top value
+           // elem.css('top', `+=${this.dropValue}%`)
+            elem.animate({ opacity: 0}, 300, () => {}) // top: `+=${this.dropValue}%` 
+            //remove top value
             return
         }
-        elem.animate({ opacity: 1, top: `-=${this.dropValue}%` }, 300, () => {})
+
+        elem.animate({ opacity: 1}, 300, () => {}) //, top: `-=${this.dropValue}%` 
     }
 
     fadeIn(index: number, isReversed: boolean = false) {
+        
         if (isReversed) {
             index = index - 1
             if (index < 0) {
                 return
+
             }
         }
-
+        this.textIndex = index
         //console.log(this.textsParams[index].text)
-        if ($.isEmptyObject(this.textsParams[index].title) == false) {
-            this.addAtributes(
-                this.title,
-                
-                this.textsParams[index].title.style
-            )
-            this.title.text(this.textsParams[index].title.text)
+        console.log(texts[this.textLanguage][0][index])
+
+        if (texts[this.textLanguage][0][index] != "") { //0 for title, 1 for paragraph
+            this.title.text(texts[this.textLanguage][0][index])
             this.fadeAnimation(this.title)
         }
-        if ($.isEmptyObject(this.textsParams[index].description) == false) {
-            //console.log("description")
-            this.addAtributes(
-                this.description,
-                
-                this.textsParams[index].description.style
-            )
-            this.description.text(this.textsParams[index].description.text)
-            this.fadeAnimation(this.description)
-        }
-        if ($.isEmptyObject(this.textsParams[index].paragraph) == false) {
-            this.addAtributes(
-                this.paragraph,
-                
-                this.textsParams[index].paragraph.style
-            )
-            this.paragraph.text(this.textsParams[index].paragraph.text)
-            this.fadeAnimation(this.paragraph)
+        if (texts[this.textLanguage][1][index] != "") {
+
+            console.log(texts[2][index] + " " + index)
+            if(texts[2][index] == 0)
+            {
+                this.paragraph.addClass('paragraph-left')
+                this.paragraph.removeClass('paragraph-right')
+            }
+            else
+            {
+                this.paragraph.addClass('paragraph-right')
+                this.paragraph.removeClass('paragraph-left')
+            }
+            this.paragraph.text(texts[this.textLanguage][1][index])
+                this.fadeAnimation(this.paragraph)
+            
         }
     }
 
     fadeOut(index: number) {
-        if ($.isEmptyObject(this.textsParams[index].title) == false) {
+        if (texts[this.textLanguage][0][index] != "") {
             this.fadeAnimation(this.title, true)
         }
-        if ($.isEmptyObject(this.textsParams[index].description) == false) {
-            this.fadeAnimation(this.description, true)
-        }
-        if ($.isEmptyObject(this.textsParams[index].paragraph) == false) {
+        if (texts[this.textLanguage][1][index] != "") {
             this.fadeAnimation(this.paragraph, true)
         }
     }
 
     fadeAllOut() {
         this.fadeAnimation(this.title, true)
-        this.fadeAnimation(this.description, true)
         this.fadeAnimation(this.paragraph, true)
         console.log('fade all out')
         console.log(window.global['isAnimationRunning'])

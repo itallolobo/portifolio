@@ -23,14 +23,14 @@ class createLokiGPT {
     private create() {
         const loader = new GLTFLoader();
 
-        loader.load( 'models/galaxy_s8/scene.gltf',  ( gltf ) => {
+        loader.load( 'models/lokiGPT/scene.gltf',  ( gltf ) => {
             this.lokiGPT = gltf.scene
             this.scene.add( gltf.scene );
             console.log(gltf.scene)
             //change scale 
             this.lokiGPT.scale.set(0.16, 0.16, 0.16)
             this.lokiGPT.position.set(21, -43.7, 15)
-            this.lokiGPT.rotation.set(-0,-0.3,3.14)
+            this.lokiGPT.rotation.set(-0.1,0.0,3.14)
 
             floatingAnimationObj(this.lokiGPT)
 

@@ -30,10 +30,17 @@ class createGradLogos {
             this.scene.add( gltf.scene );
             console.log(gltf.scene)
             this.unifei.scale.set(0.008, 0.008, 0.008)
-this.unifei.position.set(1.2, -18.5, 1)   //(0.5, -21.4, 5)
-//this.drumonsters.position.set(0.8, -20.7, 2)
-this.unifei.rotation.set(1.7, 0, 0)
-//this.drumonsters.rotation.set(90, 0, 0)
+            if (window.innerWidth < 800) { //mobile
+                this.unifei.position.set(0.7, -20.3, 3)
+                this.unifei.rotation.set(1.7, 0, 0.1)
+            } else {
+            this.unifei.position.set(1.2, -18.5, 1)   //(0.5, -21.4, 5)
+            this.unifei.rotation.set(1.8, 0.3, 0)
+            }
+            this.unifei.traverse((child) => {
+                child.userData = { URL: 'https://unifei.edu.br/' }
+            });
+            //this.drumonsters.rotation.set(90, 0, 0)
             floatingAnimationObj(this.unifei)
 
         
@@ -49,8 +56,18 @@ this.unifei.rotation.set(1.7, 0, 0)
             this.scene.add( gltf.scene );
             console.log(gltf.scene)
             this.drumonsters.scale.set(9, 9, 9)
-            this.drumonsters.position.set(0.1, -22.4, 1)
-            this.drumonsters.rotation.set(1.5, 0, 0)
+            if (window.innerWidth < 800) { //mobile
+                this.drumonsters.position.set(0.6, -24, 2)
+                this.drumonsters.rotation.set(1.5, -0.2, 0)
+            } else {
+                this.drumonsters.position.set(0.1, -22.4, 1)
+                this.drumonsters.rotation.set(1.5, -0.2, 0)
+
+            }
+            //apply user data to all children
+            this.drumonsters.traverse((child) => {
+                child.userData = { URL: 'https://www.instagram.com/drumonsters/' }
+            });
             floatingAnimationObj(this.drumonsters)
 
         }, undefined, function ( error ) {
@@ -58,26 +75,23 @@ this.unifei.rotation.set(1.7, 0, 0)
                 console.error( error );
             
             } );
-        this.pointLight = new THREE.PointLight(0xffffff, 0.4, 100);
-        this.pointLight.position.set(0.5, -20.8, 6); // Adjust the position as needed
+        if(window.innerWidth < 800){
+            this.pointLight = new THREE.PointLight(0xffffff, 0.5, 100);
+
+            this.pointLight.position.set(1.1, -22.4, 7); // Adjust the position as needed
+        }
+        else{
+        this.pointLight = new THREE.PointLight(0xffffff, 0.35, 100);
+
+            this.pointLight.position.set(0.5, -20.8, 6); // Adjust the position as needed
+        }
         this.scene.add(this.pointLight);
-        //const geometry = new THREE.BoxGeometry(0.9, 1.6, 0.3)
-        //const material = new THREE.MeshBasicMaterial({ color: 'blue' })
-        //this.encheu = new THREE.Mesh(geometry, material)
-        //this.scene.add(this.encheu)
-        //this.encheu.name = 'encheu'
-        //this.encheu.rotation.set(0, 0, 0)
+
        // 
 
 
     }
+
 }
 
 export default createGradLogos
-
-
-
-//this.unifei.position.set(1.2, -19, 2)
-//this.drumonsters.position.set(0.8, -20.7, 2)
-//this.unifei.rotation.set(90, 0, 0)
-//this.drumonsters.rotation.set(90, 0, 0)

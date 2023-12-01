@@ -40,7 +40,6 @@ class Printer {
         this.body_bottom_top.position.set(19, -41.7, 15)  //MAIN
         this.body_bottom_top.rotateX((Math.PI * 0.0) + 0.4)
 
-
         this.body_bottom_top.add(body_bottom_left)
         this.body_bottom_top.add(body_bottom_right)
         this.body_bottom_top.add(this.body_table)
@@ -78,6 +77,9 @@ class Printer {
             0,
             0
         )
+        this.body_bottom_top.traverse((child) => {
+            child.userData = { URL: 'https://recordtv.r7.com/jornal-da-record/videos/adolescente-inventa-impressora-com-pecas-de-computador-17112018' }
+        });
     }
 }
 export default Printer

@@ -2,15 +2,19 @@ import * as THREE from 'three'
 import createText from '../misc/createText'
 import {FontLoader} from 'three/examples/jsm/loaders/FontLoader'
 import * as TWEEN from '@tweenjs/tween.js'
+import floatingAnimation from '../animations/floatingAnimation'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import floatingAnimationObj from '../animations/floatingAnimation'
 
 class Clipboard {
-    public clipboard: THREE.Mesh
+    public clipboard: THREE.Group
     private scene: THREE.Scene
     private camera: THREE.PerspectiveCamera
     private fontLoader: FontLoader
     public animationGroup: TWEEN.Group
+    public pointLight: THREE.PointLight
 
-    constructor(scene: THREE.Scene, camera: THREE.PerspectiveCamera, fontLoader:FontLoader) {
+    constructor(scene: THREE.Scene, camera: THREE.PerspectiveCamera, fontLoader: FontLoader) {
         this.scene = scene
         this.camera = camera
         this.fontLoader = fontLoader
@@ -19,15 +23,34 @@ class Clipboard {
     }
 
     private create() {
-        const geometry = new THREE.BoxGeometry(1.4, 2, 0.2)
-        const material = new THREE.MeshBasicMaterial({ color: 'gray' })
-        this.clipboard = new THREE.Mesh(geometry, material)
-        this.scene.add(this.clipboard)
-        this.clipboard.name = 'clipboard'
-        this.clipboard.position.set(16.5,-55.1, 16)
-        this.clipboard.rotation.set(0, 0, 0)
-        //const text: string = "Itallo Lobo é um desenvol\nvedor fullstack que, ao longo \ndos últimos anos, adquiriu \numa base solida e autodidata \nem python, javascript/type\nscript e machine learning. \n    Possui habilidade em traba\nlhar com frameworks moder\nnas como Node.js e Django, \nbibliotecas como react.js e \njquery, além da habilidade de \ncriação de modelos de ML \navançados como CNNs e LSTMs."
-        //new createText(this.camera,this.scene,this.fontLoader, 'Roboto Slab_Regular', text, 0.05, 0.01, 'black', -0.5,0.5, 0.8, 0 ,false, this.cube)
+        const loader = new GLTFLoader();
+
+        loader.load('models/clipboard.glb', (gltf) => {
+            this.clipboard = gltf.scene
+            this.scene.add(gltf.scene);
+
+
+            console.log(gltf.scene)
+            this.clipboard.scale.set(3.2, 3.2, 3.2)
+            //this.cloneVoz.position.set(0, -0.0, 0)
+            this.clipboard.position.set(16.5,-55.1, 16)
+            if (window.innerWidth < 800) { //mobile
+                this.clipboard.rotation.set(0, -1.7, 0.1)
+
+            }
+            else
+                this.clipboard.rotation.set(0, -1.1, 0.1)
+            floatingAnimationObj(this.clipboard);
+            this.clipboard.traverse((child) => {
+                child.userData = { URL: 'https://www.instagram.com/itallolobo/' }
+            });
+        }, undefined, function (error) {
+            console.error(error);
+        });
+        this.pointLight = new THREE.PointLight(0xffffff, 0.8, 10);
+        this.pointLight.position.set(16.5,-55.5, 18); // Adjust the position as needed
+
+        this.scene.add(this.pointLight);
     }
 }
 

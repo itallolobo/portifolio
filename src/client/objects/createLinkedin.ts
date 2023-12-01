@@ -2,15 +2,19 @@ import * as THREE from 'three'
 import createText from '../misc/createText'
 import {FontLoader} from 'three/examples/jsm/loaders/FontLoader'
 import * as TWEEN from '@tweenjs/tween.js'
+import floatingAnimation from '../animations/floatingAnimation'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import floatingAnimationObj from '../animations/floatingAnimation'
 
 class createLinkedin {
-    public linkedin: THREE.Mesh
+    public linkedin: THREE.Group
     private scene: THREE.Scene
     private camera: THREE.PerspectiveCamera
     private fontLoader: FontLoader
     public animationGroup: TWEEN.Group
+    public pointLight: THREE.PointLight
 
-    constructor(scene: THREE.Scene, camera: THREE.PerspectiveCamera, fontLoader:FontLoader) {
+    constructor(scene: THREE.Scene, camera: THREE.PerspectiveCamera, fontLoader: FontLoader) {
         this.scene = scene
         this.camera = camera
         this.fontLoader = fontLoader
@@ -19,18 +23,39 @@ class createLinkedin {
     }
 
     private create() {
-        const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.2)
-        const material = new THREE.MeshBasicMaterial({ color: 'white' })
-        this.linkedin = new THREE.Mesh(geometry, material)
-        this.scene.add(this.linkedin)
-        this.linkedin.name = 'linkedin'
-        this.linkedin.position.set(16.5,-56.7, 16)
-        this.linkedin.rotation.set(0, 0, -0.13)
-        //const text: string = "Itallo Lobo é um desenvol\nvedor fullstack que, ao longo \ndos últimos anos, adquiriu \numa base solida e autodidata \nem python, javascript/type\nscript e machine learning. \n    Possui habilidade em traba\nlhar com frameworks moder\nnas como Node.js e Django, \nbibliotecas como react.js e \njquery, além da habilidade de \ncriação de modelos de ML \navançados como CNNs e LSTMs."
-        //new createText(this.camera,this.scene,this.fontLoader, 'Roboto Slab_Regular', text, 0.05, 0.01, 'black', -0.5,0.5, 0.8, 0 ,false, this.cube)
+        const loader = new GLTFLoader();
+
+        loader.load('models/linkedin.glb', (gltf) => {
+            this.linkedin = gltf.scene
+            this.scene.add(gltf.scene);
+
+
+            console.log(gltf.scene)
+            this.linkedin.scale.set(0.6, 0.6, 0.6)
+            //this.cloneVoz.position.set(0, -0.0, 0)
+            if (window.innerWidth < 800) { //mobile
+                this.linkedin.position.set(15.27,-56.36, 16.5)
+                this.linkedin.rotation.set(0, 0, 0.2)
+            }
+            else{
+                this.linkedin.position.set(16,-57, 16)
+                this.linkedin.rotation.set(0, 0, -0.13)
+            }
+            floatingAnimationObj(this.linkedin);
+            this.linkedin.traverse((child) => {
+                child.userData = { URL: 'https://www.linkedin.com/in/itallo-lobo-08325a210/' }
+            });
+        }, undefined, function (error) {
+            console.error(error);
+        });
+        this.pointLight = new THREE.PointLight(0xffffff, 0.4, 10);
+        this.pointLight.position.set(16,-57, 16.5); // Adjust the position as needed
+
+
+        this.scene.add(this.pointLight);
     }
 }
-     
+
 export default createLinkedin
 
 

@@ -34,11 +34,13 @@ import {FontLoader} from 'three/examples/jsm/loaders/FontLoader'
 import * as TWEEN from '@tweenjs/tween.js'
 import { GUI } from 'dat.gui'
 
+const pointer = new THREE.Vector2();
+const raycaster = new THREE.Raycaster();
+
 
 (<any>window).global = global
 
 window.global["isAnimationRunning"] = false
-
 
 //initialize hud
 hud()
@@ -49,8 +51,7 @@ window.scrollTo(0, 0)
 const scene = new THREE.Scene()
 const fontLoader = new FontLoader()
 
-
-
+const isMobile = window.innerWidth < 800 ? true : false
 //initialize camera
 const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 2000)
 const cameraHolder = new THREE.Object3D()
@@ -62,14 +63,39 @@ renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
-
 //const controls = new OrbitControls(camera, renderer.domElement)
 //const gui = new GUI()
-
-
 //resize view
-window.addEventListener('resize', () => resizeView(camera, renderer))
+
+const resizeCallback = () => {
+    resizeView(camera, renderer)
+}
 resizeView(camera, renderer)
+window.addEventListener('resize',resizeCallback)
+
+const onMouseClick = (event: MouseEvent) => {
+    //check if is left click or mobile
+    if (event.button != 0) {
+        return
+    }
+    pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+    pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(pointer, camera);
+    const intersects = raycaster.intersectObjects(scene.children);
+
+     for (let i = 0; i < intersects.length; i++) {
+        //check if userdata has URL
+        if (intersects[i].object.userData["URL"]) {
+            window.open(intersects[i].object.userData["URL"], '_blank')
+            console.log(intersects[i].object.userData)
+            break
+        }
+    
+}
+}
+document.addEventListener('mousedown', onMouseClick, false);
+
 
 
 
@@ -90,8 +116,8 @@ new rocketEntryAnimation(rocket.rocket, camera)
 var clipboard = new createClipboard(scene,camera,fontLoader)
 var linkedin = new createLinkedin(scene,camera,fontLoader)
 
-floatingAnimation(clipboard.clipboard)
-floatingAnimation(linkedin.linkedin)
+//floatingAnimation(clipboard.clipboard)
+//floatingAnimation(linkedin.linkedin)
 console.log(clipboard)
 
 //section3

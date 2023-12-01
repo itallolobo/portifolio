@@ -42,13 +42,21 @@ class createCloneVoz {
             this.cloneVoz.rotation.set(-0, 0.3,0)
             //this.cloneVoz.position.set(0, -0.0, 0)
             this.cloneVoz.position.set(19, -35.1, 14)
+            this.cloneVoz.traverse((child) => {
+                child.userData = { URL: 'https://veja.abril.com.br/coluna/matheus-leitao/ouca-pela-primeira-vez-a-voz-do-pintor-candido-portinari/' }
+            });
             floatingAnimationObj(this.cloneVoz);
+
+            //detect click
+            
         }, undefined, function (error) {
             console.error(error);
         });
         this.pointLight = new THREE.PointLight(0xffffff, 0.5, 100);
         this.pointLight.position.set(19, -34, 15); // Adjust the position as needed
         this.scene.add(this.pointLight);
+
+        
     }
 }
 
