@@ -4,7 +4,7 @@ import animationList from '../animations/animationsList'
 import books from '../objects/createBooks'
 import TextHandler from './textHandler'
 
-const textHandler = new TextHandler()  //inicio            //grad                    porjetos              voz                   encheu                   impressora            lokigpt              contato
+const textHandler = new TextHandler()  //inicio            //grad                    projetos              voz                   encheu                   impressora            lokigpt              contato
 const animationsPointsComp:any = [{ x: 0, y: -2, z: 11 },{ x: 3, y: -20, z: 10 },{x:20, y:-39.8, z:35},{x:20.5, y:-35, z:18},{x:20.5, y:-38.6, z:19},{x:20, y:-41.5, z:18},{x:20, y:-44.6, z:18},{x:17.5, y:-55.6, z:21}]
 const animationsPointsMob:any =  [{ x: 0, y: -2, z: 11 },{ x: 1.2, y: -20, z: 15 },{x:20, y:-40.2, z:35},{x:18.95, y:-34.3, z:19.5},{x:21.45, y:-39.2, z:19.8},{x:19, y:-40.8, z:19},{x:21, y:-45.2, z:19},{x:16.2, y:-54.6, z:21.7}]
 
@@ -43,6 +43,22 @@ class movementHandler {
             } else if (e.key == 'ArrowUp') {
                 this.animationController(-1)
             }
+        })
+
+        //if swipe down
+        var startY: number = 0
+        window.addEventListener('touchstart', (e) => {
+            startY = e.touches[0].clientY
+        })
+        window.addEventListener('touchend', (e) => {
+            var endY = e.changedTouches[0].clientY
+            if (Math.abs(endY - startY) > 60) {
+            if (endY > startY) {
+                this.animationController(-1)
+            } else {
+                this.animationController(1)
+            }
+        }
         })
 
     }
