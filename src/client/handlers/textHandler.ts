@@ -79,7 +79,18 @@ class TextHandler {
         console.log(texts[this.textLanguage][0][index])
 
         if (texts[this.textLanguage][0][index] != "") { //0 for title, 1 for paragraph
-            this.title.text(texts[this.textLanguage][0][index])
+            this.title.removeClass('title-projetos')
+            console.log(index)
+            if (index == 1){ //titulo projetos
+                this.title.text(texts[this.textLanguage][0][index])
+                this.title.addClass('title-projetos')
+                
+            }
+            else
+                this.title.text(texts[this.textLanguage][0][index])
+                
+
+
             this.fadeAnimation(this.title)
         }
         if (texts[this.textLanguage][1][index] != "") {

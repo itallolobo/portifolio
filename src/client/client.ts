@@ -17,6 +17,8 @@ import createCloneVoz from './objects/projects/createCloneVoz'
 import createEncheu from './objects/projects/createEncheu'
 import createPrinter from './objects/projects/createPrinter'
 import createLokiGPT from './objects/projects/createLokiGPT'
+import createRobo from './objects/projects/createRobo'
+import createMina from './objects/projects/createMina'
 
 import createGradLogos from './objects/createGradLogos'
 //Animations
@@ -58,14 +60,25 @@ const cameraHolder = new THREE.Object3D()
 //cameraHolder.add(camera)
 cameraHolder.position.z = 11
 cameraHolder.position.y = -2
-const renderer = new THREE.WebGLRenderer({ antialias: true })
-renderer.setPixelRatio( window.devicePixelRatio );
-renderer.setSize(window.innerWidth, window.innerHeight)
-document.body.appendChild(renderer.domElement)
+
+const renderer = new THREE.WebGLRenderer({ antialias: isMobile ? false : true})
+
 
 //const controls = new OrbitControls(camera, renderer.domElement)
 //const gui = new GUI()
 //resize view
+
+//setando configurçoes de performance
+if(isMobile){
+    
+    renderer.setPixelRatio( window.devicePixelRatio *0.8 );
+
+}
+else{
+    renderer.setPixelRatio( window.devicePixelRatio);
+
+}
+document.body.appendChild(renderer.domElement)
 
 const resizeCallback = () => {
     resizeView(camera, renderer)
@@ -129,6 +142,8 @@ var cloneVoz = new createCloneVoz(scene,camera,fontLoader)
 var encheu = new createEncheu(scene,camera,fontLoader)
 var printer = new createPrinter(scene,camera,fontLoader)
 var lokiGPT = new createLokiGPT(scene,camera,fontLoader)
+var robo = new createRobo(scene,camera,fontLoader)
+var mina = new createMina(scene,camera,fontLoader)
 
 window.global["projectObjets"] = [cloneVoz,encheu,printer,lokiGPT]
 
@@ -137,6 +152,7 @@ var movHandler = new movementHandler(scene,camera,cameraHolder)
 
 const light = new THREE.AmbientLight( 0x404040 ); // soft white light
 scene.add( light );
+
 function animate() {
    
     requestAnimationFrame(animate)
@@ -146,6 +162,7 @@ function animate() {
     //controls.update()
     render()
     TWEEN.update()
+    
     
 }
 

@@ -63,7 +63,7 @@ class Printer {
             this.scene,
             this.fontLoader,
             'Roboto Slab_Regular',
-            'Teste',
+            '',
             0.05,
             0.001,
             'white',
