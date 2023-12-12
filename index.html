@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        z
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/texts.css" />
+        <link rel="stylesheet" href="/css/lang-button.css " />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+            integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <title>Itallo Lobo</title>
+        <script
+            src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+            crossorigin="anonymous"
+        ></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+        <script src="loading-screen.js"></script>
+    </head>
+
+    <body>
+        <div class="loading-screen">
+            <img src="images/robo-icon.jpg" class="loading-screen-img hide " >
+            <img src="images/encheu-icon.jpg" class="loading-screen-img hide" >
+            <img src="images/impressora-icon.jpg" class="loading-screen-img hide" >
+            <img src="images/loki-icon.jpg" class="loading-screen-img hide" >
+            <img src="images/mina-icon.jpg" class="loading-screen-img hide" >
+            <img src="images/encheu-icon.jpg" class="loading-screen-img hide" >
+
+            <!-- Adicione mais imagens conforme necessário -->
+          </div>
+        <div id="hud-container">
+            <div id="sound-container">
+                <div id="sound-btn-container">
+                    <img id="sound-icon" src="/images/sound-on.png" alt="sound on" value="" />
+                </div>
+            </div>
+
+            <div id="lang-container">
+                <div id="lang-btn-container">
+                    <div class="button b2" id="button-lang">
+                        <input type="checkbox" class="checkbox" />
+                        <div class="knobs">
+                            <span>BR</span>
+                        </div>
+                        <div class="layer"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="move-btn-container">
+                <div id="up-btn" class="move-btn">
+                    <img class="arrow-icon" src="/images/arrow.svg" value="" />
+                </div>
+                <div id="down-btn" class="move-btn">
+                    <img class="arrow-icon" src="/images/arrow.svg" value="" />
+                </div>
+            </div>
+            <div id="title" class=""></div>
+            <div id="paragraph"class=""></div>
+        </div>
+        <script>
+            window.scrollTo(0, 0)
+        </script>
+        <script type="module" src="bundle.js"></script>
+    </body>
+</html>
