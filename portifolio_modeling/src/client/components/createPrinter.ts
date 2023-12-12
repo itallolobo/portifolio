@@ -39,7 +39,7 @@ const createPrinter = (scene: THREE.Scene, camera: THREE.PerspectiveCamera, font
     body_top_top.rotateX(-1.56)
     
 
-    const bio = new createText(camera,scene,fontLoader, 'Roboto Slab_Regular', "Teste", 0.05, 0.001, 'white', 0,0.13, 0, 0 ,true,0,-Math.PI*0.5,0,0)
+    #const bio = new createText(camera,scene,fontLoader, 'Roboto Slab_Regular', "Teste", 0.05, 0.001, 'white', 0,0.13, 0, 0 ,true,0,-Math.PI*0.5,0,0)
     //return cube
 
 }

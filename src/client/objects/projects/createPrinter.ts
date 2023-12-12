@@ -58,7 +58,7 @@ class Printer {
         body_top_top.position.set(0, 0.45, -0.45)
         body_top_top.rotateX(-1.56)
 
-        const bio = new createText(
+        /*const bio = new createText(
             this.camera,
             this.scene,
             this.fontLoader,
@@ -76,7 +76,7 @@ class Printer {
             -Math.PI * 0.5,
             0,
             0
-        )
+        )*/
         this.body_bottom_top.traverse((child) => {
             child.userData = { URL: 'https://recordtv.r7.com/jornal-da-record/videos/adolescente-inventa-impressora-com-pecas-de-computador-17112018' }
         });

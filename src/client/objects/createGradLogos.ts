@@ -23,7 +23,8 @@ class createGradLogos {
     }
 
     private create() {
-        const loader = new GLTFLoader();
+        const loader: GLTFLoader = window.global["Loader"]
+
 
         loader.load( 'models/unifei.glb',  ( gltf ) => {
             this.unifei = gltf.scene
@@ -31,7 +32,7 @@ class createGradLogos {
             console.log(gltf.scene)
             this.unifei.scale.set(0.008, 0.008, 0.008)
             if (window.innerWidth < 800) { //mobile
-                this.unifei.position.set(0.7, -20.3, 3)
+                this.unifei.position.set(0.7, -20.8, 3)
                 this.unifei.rotation.set(1.7, 0, 0.1)
             } else {
             this.unifei.position.set(1.2, -18.5, 1)   //(0.5, -21.4, 5)
@@ -50,8 +51,7 @@ class createGradLogos {
         
         } );
 
-        const loader_2 = new GLTFLoader();
-        loader_2.load( 'models/drumonsters.glb',  ( gltf ) => {
+        loader.load( 'models/drumonsters.glb',  ( gltf ) => {
             this.drumonsters = gltf.scene
             this.scene.add( gltf.scene );
             console.log(gltf.scene)

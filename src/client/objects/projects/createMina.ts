@@ -21,7 +21,8 @@ class Mina {
     }
 
     private create() {
-        const loader = new GLTFLoader();
+        const loader: GLTFLoader = window.global["Loader"]
+
 
         loader.load( 'models/mina/scene.gltf',  ( gltf ) => {
             this.mina = gltf.scene

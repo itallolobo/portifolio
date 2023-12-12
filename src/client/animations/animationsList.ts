@@ -40,7 +40,7 @@ const animationList: any = [
                 window.global["isAnimationRunning"] = false
                 //books.create()
                 console.log('animation 1')
-                textHandler.fadeIn(0, isReversed)
+                textHandler.fadeIn(1, isReversed)
 
                 
 
@@ -65,7 +65,7 @@ const animationList: any = [
             .start()
             .onComplete(() => {
                 console.log('animation 3')
-                textHandler.fadeIn(1, isReversed)
+                textHandler.fadeIn(2, isReversed)
                 //books.animate(isReversed)
                 window.global["isAnimationRunning"] = false
                 console.log("isReversedd", isReversed)
@@ -91,7 +91,7 @@ const animationList: any = [
             .start()
             .onComplete(() => {
                 console.log('animation 3')
-                textHandler.fadeIn(2, isReversed)
+                textHandler.fadeIn(3, isReversed)
                 //books.animate(isReversed)
                 window.global["isAnimationRunning"] = false
                 console.log("isReversedd", isReversed)
@@ -117,7 +117,7 @@ const animationList: any = [
             .start()
             .onComplete(() => {
                 console.log('animation 3')
-                textHandler.fadeIn(3, isReversed)
+                textHandler.fadeIn(4, isReversed)
                 //books.animate(isReversed)
                 window.global["isAnimationRunning"] = false
                 console.log("isReversedd", isReversed)
@@ -144,7 +144,7 @@ const animationList: any = [
             .start()
             .onComplete(() => {
                 console.log('animation 3')
-                textHandler.fadeIn(4, isReversed)
+                textHandler.fadeIn(5, isReversed)
                 //books.animate(isReversed)
                 window.global["isAnimationRunning"] = false
                 console.log("isReversedd", isReversed)
@@ -171,7 +171,7 @@ const animationList: any = [
             .start()
             .onComplete(() => {
                 console.log('animation 3')
-                textHandler.fadeIn(5, isReversed)
+                textHandler.fadeIn(6, isReversed)
                 //books.animate(isReversed)
                 window.global["isAnimationRunning"] = false
                 console.log("isReversedd", isReversed)
@@ -197,7 +197,7 @@ const animationList: any = [
             .start()
             .onComplete(() => {
                 console.log('animation 3')
-                textHandler.fadeIn(6, isReversed)
+                textHandler.fadeIn(7, isReversed)
                 //books.animate(isReversed)
                 window.global["isAnimationRunning"] = false
                 console.log("isReversedd", isReversed)
@@ -223,7 +223,7 @@ const animationList: any = [
             .start()
             .onComplete(() => {
                 console.log('animation 3')
-                textHandler.fadeIn(7, isReversed)
+                textHandler.fadeIn(8, isReversed)
                 //books.animate(isReversed)
                 window.global["isAnimationRunning"] = false
                 console.log("isReversedd", isReversed)
@@ -249,7 +249,7 @@ const animationList: any = [
             .start()
             .onComplete(() => {
                 console.log('animation 3')
-                textHandler.fadeIn(8, isReversed)
+                textHandler.fadeIn(9, isReversed)
                 //books.animate(isReversed)
                 window.global["isAnimationRunning"] = false
                 console.log("isReversedd", isReversed)

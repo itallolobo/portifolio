@@ -23,7 +23,8 @@ class Clipboard {
     }
 
     private create() {
-        const loader = new GLTFLoader();
+        const loader: GLTFLoader = window.global["Loader"]
+
 
         loader.load('models/clipboard.glb', (gltf) => {
             this.clipboard = gltf.scene

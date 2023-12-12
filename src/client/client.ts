@@ -5,7 +5,7 @@ import hud from './components/hud'
 import movementHandler from './handlers/movementHandler'
 import randomRange from './components/randomRange'
 import floatingAnimation from './animations/floatingAnimation'
-
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 //objects
 import createStars from './objects/createStars'
 import createText from './misc/createText'
@@ -41,6 +41,25 @@ const raycaster = new THREE.Raycaster();
 
 
 (<any>window).global = global
+
+const loadingManager = new THREE.LoadingManager( () => {
+	
+    const loadingScreen = document.getElementsByClassName( 'loading-screen' );
+   // loadingScreen.classList.add( 'fade-out' );
+    console.log('loaded')
+    new rocketEntryAnimation(rocket.rocket, camera)
+    window.global["isLoaded"] = true
+    
+} );
+
+//create a gltf loader
+window.global["Loader"] = new GLTFLoader(loadingManager)
+
+window.global["posIndex"] = 0
+
+
+
+
 
 window.global["isAnimationRunning"] = false
 
@@ -80,8 +99,17 @@ else{
 }
 document.body.appendChild(renderer.domElement)
 
+
 const resizeCallback = () => {
     resizeView(camera, renderer)
+    if (window.innerWidth < 800 && !isMobile) {
+        window.location.reload()
+    }
+    else if (window.innerWidth > 800 && isMobile) {
+        window.location.reload()
+    }
+
+
 }
 resizeView(camera, renderer)
 window.addEventListener('resize',resizeCallback)
@@ -120,7 +148,7 @@ var developer = new createText(camera,scene,fontLoader, 'Roboto Slab_Regular', '
 var slab = new createText(camera,scene,fontLoader, 'Roboto Slab_Regular', '_', 1.1, 0.3, 'white', 3.8, 3.5, -34,200)
 
 var rocket = new createRocket(scene)
-new rocketEntryAnimation(rocket.rocket, camera)
+
 //floatingAnimation(rocket.rocket)
 
 
@@ -134,6 +162,8 @@ var linkedin = new createLinkedin(scene,camera,fontLoader)
 console.log(clipboard)
 
 //section3
+
+
 
 var gradLogos = new createGradLogos(scene,camera,fontLoader)
 

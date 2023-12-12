@@ -50,8 +50,9 @@
 @media screen and (max-width: 768px) {
     #paragraph{
         font-size: 2vh;
-        width: 80%;
+        width: 90%;
         text-align: center;
+        justify-content: center;
 
     }
     .paragraph-left{

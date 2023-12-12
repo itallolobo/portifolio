@@ -21,14 +21,15 @@ class Encheu {
     }
 
     private create() {
-        const loader = new GLTFLoader();
+        const loader: GLTFLoader = window.global["Loader"]
+
 
         loader.load( 'models/encheu/scene.gltf',  ( gltf ) => {
             this.encheu = gltf.scene
             this.scene.add( gltf.scene );
             console.log(gltf.scene)
             this.encheu.scale.set(0.16, 0.16, 0.16)
-            this.encheu.rotation.set(-0,-0.3,3.14)
+            this.encheu.rotation.set(-0,0.1,3.14)
             this.encheu.position.set(21.5, -37.7, 16)
             floatingAnimationObj(this.encheu)
             this.encheu.traverse((child) => {

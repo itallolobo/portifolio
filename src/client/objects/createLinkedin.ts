@@ -23,7 +23,8 @@ class createLinkedin {
     }
 
     private create() {
-        const loader = new GLTFLoader();
+        const loader: GLTFLoader = window.global["Loader"]
+
 
         loader.load('models/linkedin.glb', (gltf) => {
             this.linkedin = gltf.scene

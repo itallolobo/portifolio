@@ -21,7 +21,8 @@ class createLokiGPT {
     }
 
     private create() {
-        const loader = new GLTFLoader();
+        const loader: GLTFLoader = window.global["Loader"]
+
 
         loader.load( 'models/lokiGPT/scene.gltf',  ( gltf ) => {
             this.lokiGPT = gltf.scene

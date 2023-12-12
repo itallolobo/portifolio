@@ -44,8 +44,13 @@ class TextHandler {
             this.textLanguage = language
             this.fadeIn(this.textIndex)
 
+
         }, 300)
         //change language
+
+        //change language of home
+        
+
 
     }
 
@@ -81,7 +86,7 @@ class TextHandler {
         if (texts[this.textLanguage][0][index] != "") { //0 for title, 1 for paragraph
             this.title.removeClass('title-projetos')
             console.log(index)
-            if (index == 1){ //titulo projetos
+            if (index == 2){ //titulo projetos
                 this.title.text(texts[this.textLanguage][0][index])
                 this.title.addClass('title-projetos')
                 
