@@ -85,6 +85,10 @@ main {
 #down-btn{
     transform: rotate(180deg);
 }
+#up-btn{
+    opacity: 0.3;
+}
+
 .arrow-icon{
     display:flex;
     justify-content: center;
