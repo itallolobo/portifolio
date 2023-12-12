@@ -69,7 +69,7 @@
     margin: 0;
     opacity: 0;
     cursor: pointer;
-    z-index: 3;
+    z-index: 180;
     border: 2px solid #ffff;
 }
 
