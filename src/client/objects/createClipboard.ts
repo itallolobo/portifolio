@@ -26,7 +26,7 @@ class Clipboard {
         const loader: GLTFLoader = window.global["Loader"]
 
 
-        loader.load('models/clipboard.glb', (gltf) => {
+        loader.load('models/clipboard/clipboard.gltf', (gltf) => {
             this.clipboard = gltf.scene
             this.scene.add(gltf.scene);
 
@@ -43,7 +43,8 @@ class Clipboard {
                 this.clipboard.rotation.set(0, -1.1, 0.1)
             floatingAnimationObj(this.clipboard);
             this.clipboard.traverse((child) => {
-                child.userData = { URL: 'https://www.instagram.com/itallolobo/' }
+                const url = window.location.href + "Itallo's resume.pdf"
+                child.userData = { URL: url }
             });
         }, undefined, function (error) {
             console.error(error);

@@ -33,7 +33,7 @@ class Mina {
             this.mina.position.set(23, -48.4, 17)
             floatingAnimationObj(this.mina)
             this.mina.traverse((child) => {
-                child.userData = { URL: 'https://www.encheu.com.br' }
+                child.userData = { URL: 'https://www.instagram.com/p/CygrUJmOOIi/' }
             });
         
         }, undefined, function ( error ) {

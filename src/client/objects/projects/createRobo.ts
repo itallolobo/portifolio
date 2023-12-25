@@ -33,9 +33,9 @@ class Robo {
             this.robo.rotation.set(0.4,-0.3,0)
             this.robo.position.set(18.5, -47, 15)
             floatingAnimationObj(this.robo)
-            this.robo.traverse((child) => {
-                child.userData = { URL: 'https://www.encheu.com.br' }
-            });
+            //this.robo.traverse((child) => {
+            //    child.userData = { URL: 'https://www.encheu.com.br' }
+           // });
         
         }, undefined, function ( error ) {
         

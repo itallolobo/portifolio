@@ -44,8 +44,6 @@ const raycaster = new THREE.Raycaster();
 
 const loadingManager = new THREE.LoadingManager( () => {
 	
-    const loadingScreen = document.getElementsByClassName( 'loading-screen' );
-   // loadingScreen.classList.add( 'fade-out' );
     console.log('loaded')
     new rocketEntryAnimation(rocket.rocket, camera)
     window.global["isLoaded"] = true
@@ -127,7 +125,7 @@ const onMouseClick = (event: MouseEvent) => {
 
      for (let i = 0; i < intersects.length; i++) {
         //check if userdata has URL
-        if (intersects[i].object.userData["URL"]) {
+        if (intersects[i].object.userData["URL"] && window.global["isAnimationRunning"] == false) {
             window.open(intersects[i].object.userData["URL"], '_blank')
             console.log(intersects[i].object.userData)
             break

@@ -5,8 +5,8 @@ import books from '../objects/createBooks'
 import TextHandler from './textHandler'
 
 const textHandler = new TextHandler()  //inicio            //grad                    projetos              voz                   encheu                   impressora            lokigpt          robo                        mina    (21.5, -48.4, 18)    contato
-const animationsPointsComp:any = [{ x: 0, y: -2, z: 11 },{ x: 3, y: -20, z: 10 },{x:20, y:-42, z:38},{x:20.5, y:-35, z:18},{x:20.5, y:-38.6, z:19},{x:20, y:-41.5, z:18},{x:20, y:-44.6, z:18},{x:19.4, y:-47, z:18.2},{x:23.3, y:-48.4, z:20},{x:17.5, y:-55.6, z:21}]
-const animationsPointsMob:any =  [{ x: 0, y: -2, z: 11 },{ x: 1.2, y: -20.3, z: 15 },{x:20, y:-42.6, z:38},{x:18.95, y:-34.3, z:19.5},{x:21.45, y:-39.2, z:19.8},{x:19, y:-40.8, z:19.5},{x:21, y:-45.2, z:19},{x:18.45, y:-46.4, z:19},{x:22.2, y:-47.9, z:20.5},{x:16.2, y:-54.6, z:21.7}]
+const animationsPointsComp:any = [{ x: 0, y: -2, z: 11 },{ x: 3, y: -20, z: 10 },{x:20.5, y:-35, z:18},{x:20.5, y:-38.6, z:19},{x:20, y:-41.5, z:18},{x:20, y:-44.6, z:18},{x:19.4, y:-47, z:18.2},{x:23.3, y:-48.4, z:20},{x:17.5, y:-55.6, z:21}]
+const animationsPointsMob:any =  [{ x: 0, y: -2, z: 11 },{ x: 1.2, y: -20.3, z: 15 },{x:18.95, y:-34.3, z:19.5},{x:21.45, y:-39.2, z:19.8},{x:19, y:-40.8, z:19.5},{x:21, y:-45.2, z:19},{x:18.45, y:-46.4, z:19},{x:22.2, y:-47.9, z:20.5},{x:16.2, y:-54.6, z:21.7}]
 
 class movementHandler {
     public scene: THREE.Scene
@@ -23,7 +23,7 @@ class movementHandler {
         this.books = new books(this.scene, this.camera, this.cameraHolder)
         const upBtn = document.getElementById('up-btn')
         const downBtn = document.getElementById('down-btn')
-       // this.animationController(1)
+        //this.animationController(1)
         upBtn?.addEventListener('click', () => {
             this.animationController(-1)
         })
@@ -82,6 +82,19 @@ class movementHandler {
                 textHandler,
                 animationsPoints
             )
+            if (this.animationIndex == 0) {
+                $('#up-btn').animate({ opacity: '0.3' }, 1300)
+                $('#up-btn').css('cursor', 'default')
+            }
+            else {
+                $('#up-btn').animate({ opacity: '1' }, 1300)
+                $('#up-btn').css('cursor', 'pointer')
+            }
+            if (this.animationIndex == this.animationList.length - 1) {
+                $('#down-btn').animate({ opacity: '1' }, 1000)
+                $('#down-btn').css('cursor', 'pointer')
+            }
+
         } else if (direction == 1 && this.animationIndex < this.animationList.length && window.global['isAnimationRunning']==false) {
             window.global["isAnimationRunning"] = true
             this.animationIndex += 1
@@ -95,6 +108,19 @@ class movementHandler {
                 textHandler,
                 animationsPoints
             )
+
+            if (this.animationIndex == this.animationList.length) {
+                $('#down-btn').animate({ opacity: '0.3' }, 2000)
+                $('#down-btn').css('cursor', 'default')
+            }
+            else {
+                $('#down-btn').animate({ opacity: '1' }, 1000)
+                $('#down-btn').css('cursor', 'pointer')
+            }
+            if (this.animationIndex == 1) {
+                $('#up-btn').animate({ opacity: '1' }, 1300)
+                $('#up-btn').css('cursor', 'pointer')
+            }
         }
         window.global["posIndex"] = this.animationIndex
     }

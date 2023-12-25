@@ -36,6 +36,9 @@ const animationList: any = [
             .to(isReversed ? start : end, 1300)
             .easing(TWEEN.Easing.Quadratic.InOut)
             .start()
+            .onStart(() => {
+                $('#down-btn').removeClass('pulse-animation')
+            })
             .onComplete(() => {
                 window.global["isAnimationRunning"] = false
                 //books.create()
@@ -45,6 +48,10 @@ const animationList: any = [
                 
 
             })
+            if (isReversed) {
+               // $('#up-btn').animate({ opacity: '0.3' }, 1000)
+              }
+
     },
     (
         isReversed: boolean = false,
@@ -60,7 +67,7 @@ const animationList: any = [
         new TWEEN.Tween(cameraHolder.position)
             
 
-            .to(isReversed ? start : end, 1600)  //1600
+            .to(isReversed ? start : end, 2100)  //1600
             .easing(TWEEN.Easing.Quadratic.InOut)
             .start()
             .onComplete(() => {
@@ -95,6 +102,7 @@ const animationList: any = [
                 //books.animate(isReversed)
                 window.global["isAnimationRunning"] = false
                 console.log("isReversedd", isReversed)
+              //  hideObject(window.global["projectObjets"][0], isReversed)
 
             })
     },
@@ -121,7 +129,7 @@ const animationList: any = [
                 //books.animate(isReversed)
                 window.global["isAnimationRunning"] = false
                 console.log("isReversedd", isReversed)
-              //  hideObject(window.global["projectObjets"][0], isReversed)
+//hideObject(window.global["projectObjets"][0], isReversed)
 
             })
     },
@@ -148,7 +156,7 @@ const animationList: any = [
                 //books.animate(isReversed)
                 window.global["isAnimationRunning"] = false
                 console.log("isReversedd", isReversed)
-//hideObject(window.global["projectObjets"][0], isReversed)
+               // hideObject(window.global["projectObjets"][0], isReversed)
 
             })
     },
@@ -165,7 +173,6 @@ const animationList: any = [
         const end = animationsPoints[6]
         new TWEEN.Tween(cameraHolder.position)
             
-
             .to(isReversed ? start : end, 1000)  //1600
             .easing(TWEEN.Easing.Quadratic.InOut)
             .start()
@@ -218,7 +225,7 @@ const animationList: any = [
         const end = animationsPoints[8]
         new TWEEN.Tween(cameraHolder.position)
             
-            .to(isReversed ? start : end, 1000)  //1600
+            .to(isReversed ? start : end, 2000)  //1600
             .easing(TWEEN.Easing.Quadratic.InOut)
             .start()
             .onComplete(() => {
@@ -227,33 +234,7 @@ const animationList: any = [
                 //books.animate(isReversed)
                 window.global["isAnimationRunning"] = false
                 console.log("isReversedd", isReversed)
-               // hideObject(window.global["projectObjets"][0], isReversed)
 
-            })
-    },
-    (
-        isReversed: boolean = false,
-        scene: THREE.Scene,
-        camera: THREE.PerspectiveCamera,
-        cameraHolder: THREE.Object3D,
-        textHandler: any,
-        animationsPoints: any
-    ) => {
-        window.global["isAnimationRunning"] = true
-        const start = animationsPoints[8]
-        const end = animationsPoints[9]
-        new TWEEN.Tween(cameraHolder.position)
-            
-            .to(isReversed ? start : end, 2000)  //1600
-            .easing(TWEEN.Easing.Quadratic.InOut)
-            .start()
-            .onComplete(() => {
-                console.log('animation 3')
-                textHandler.fadeIn(9, isReversed)
-                //books.animate(isReversed)
-                window.global["isAnimationRunning"] = false
-                console.log("isReversedd", isReversed)
-              //  hideObject(window.global["projectObjets"][0], isReversed)
 
             })
     },

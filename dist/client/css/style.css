@@ -81,10 +81,32 @@ main {
     justify-content: center;
     align-items: center;
 }
-
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
 #down-btn{
     transform: rotate(180deg);
+
+
 }
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+#up-btn{
+    opacity: 0.3;
+    cursor: default;
+}
+
 .arrow-icon{
     display:flex;
     justify-content: center;
@@ -126,3 +148,17 @@ main {
 z-index: 100;
 }
 
+@keyframes glowing {
+    0% {
+      background-color: #2ba805;
+      box-shadow: 0 0 5px #2ba805;
+    }
+    50% {
+      background-color: #49e819;
+      box-shadow: 0 0 20px #49e819;
+    }
+    100% {
+      background-color: #2ba805;
+      box-shadow: 0 0 5px #2ba805;
+    }
+  }
