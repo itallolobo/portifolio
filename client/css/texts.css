@@ -1,0 +1,78 @@
+
+#paragraph{
+    height: max-content;
+    display: inline-block;
+    z-index: 100;
+    position: absolute;
+    font-size: 2.5vh;
+    z-index: 100;
+    font-weight: 300;
+    line-height: 1.5;
+    text-align: left;
+    width: 35%;
+
+
+
+}
+.paragraph-left{
+    
+    bottom: 50%;
+    left: 13%;
+    transform: translate(0, 50%);
+
+
+}
+.paragraph-right{
+    top: 50%;
+    right: 13%;
+    transform: translate(0, -50%);
+
+}
+#title{
+    position: absolute;
+    transform: translate(-50%, 0);
+    font-size: 3vh;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+    font-weight: 300;
+    line-height: 1.5;
+    left: 50%;
+    top: 10% ;
+
+}
+
+.title-projetos{
+    top: 5% !important;
+}
+
+
+@media screen and (max-width: 768px) {
+    #paragraph{
+        font-size: 2vh;
+        width: 90%;
+        text-align: center;
+        justify-content: center;
+
+    }
+    .paragraph-left{
+        transform: translate(-50%,0)!important;
+        left: 50%;
+        bottom: 16%;
+    }
+    .paragraph-right{
+        transform: translate(50%, 0)!important;
+        top: 12%;
+        right: 50%;
+
+
+
+    }
+    #title{
+        top: 5% !important;
+    }
+    .title-projetos{
+        top: 3% !important;
+    }
+    
+}
